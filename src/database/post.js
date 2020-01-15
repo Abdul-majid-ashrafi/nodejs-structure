@@ -1,4 +1,4 @@
-const errors = require('../core/errors');
+const errors = require('../helper/errors');
 
 class PostDatabase {
     constructor() {
