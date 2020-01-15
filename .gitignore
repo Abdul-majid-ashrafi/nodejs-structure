@@ -1,0 +1,16 @@
+/node_modules
+/client/www/node_modules
+/client/franchise/node_modules
+/client/vendor/node_modules
+/client/office/node_modules
+/client/crm/node_modules
+/client/tracker/node_modules
+/.idea
+/.vscode
+/build
+
+.env
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
