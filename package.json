@@ -2,8 +2,9 @@
   "name": "nodejs-structure",
   "version": "1.0.0",
   "description": "node.js structure with express.js for simple backend application",
-  "main": "app.js",
+  "main": "./src/app.js",
   "scripts": {
+    "start": "node ./src/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Majid Ashraf",
