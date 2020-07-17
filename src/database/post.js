@@ -1,55 +1,64 @@
-const errors = require('../helper/errors');
+import { errors } from '../helper';
+import { PostSchema } from '../schemas';
 
-class PostDatabase {
-    constructor() {
-        this.posts = [
-            //default post
-            {
-                id: 1579076693186,
-                title: "JavaScript",
-                description: "JavaScript, often abbreviated as JS, is a high-level, just-in-time compiled, multi-paradigm programming language that conforms to the ECMAScript specification. JavaScript has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions",
-                owner: "Majid Ashraf",
-                link: "www.example.com"
-            }
-        ];
-    }
+class postDatabase {
 
-    createPost(postobject) {
+    get() {
         return new Promise((resolve, reject) => {
-            postobject.id = Date.now();
-            this.posts.push(postobject);
-            resolve("Post has been create successfully");
-        })
-    }
-
-    getPost(id) {
-        return new Promise((resolve, reject) => {
-            let postFound = undefined;
-            for (let i = 0; i < this.posts.length; i++) {
-                const post = this.posts[i];
-                if (post.id === id) {
-                    postFound = post;
-                }
-            }
-            if (postFound) {
-                resolve(postFound);
-            } else {
-                reject(errors["001"]);
+            try {
+                PostSchema.find({}, (error, data) => {
+                    if (error) {
+                        reject(errors["002"], error);
+                    } else {
+                        resolve(data);
+                    }
+                })
+            } catch (error) {
+                errors["003"].reason = error.message;
+                reject(errors["003"]);
             }
         })
     }
 
-    getAllPost() {
+    create(postobject) {
         return new Promise((resolve, reject) => {
-            if (this.posts) {
-                resolve(this.posts);
-            } else {
-                reject(errors["002"]);
+            try {
+                PostSchema.create(postobject, (error, resposne) => {
+                    if (error) {
+                        errors["001"].reason = error.message;
+                        reject(errors["001"]);
+                    } else {
+                        resolve(resposne);
+                    }
+                })
+            } catch (error) {
+                errors["003"].reason = error.message;
+                reject(errors["003"]);
             }
         })
     }
+
+    update(_id, obj) {
+        return new Promise((resolve, reject) => {
+            try {
+                // set  new: true it will be return updated document
+                PostSchema.findOneAndUpdate(_id, obj, { new: true }, (error, resposne) => {
+                    if (error) {
+                        errors["005"].reason = error.message;
+                        reject(errors["005"]);
+                    } else {
+                        resolve(resposne);
+                    }
+                })
+            } catch (error) {
+                errors["003"].reason = error.message;
+                reject(errors["003"]);
+            }
+        })
+    }
+
 }
 
 
 
-module.exports = PostDatabase;
+export default new postDatabase();

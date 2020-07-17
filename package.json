@@ -4,12 +4,19 @@
   "description": "node.js structure with express.js for simple backend application",
   "main": "./src/app.js",
   "scripts": {
-    "start": "node ./src/app",
+    "start": "nodemon transpiled/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Majid Ashraf",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.24"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^2.0.4"
   }
 }

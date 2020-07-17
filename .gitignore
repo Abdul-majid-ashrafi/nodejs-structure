@@ -3,11 +3,11 @@
 /.vscode
 /build
 
-/src/.env
-/src/package-lock.json
-/src/npm-debug.log*
-/src/yarn-debug.log*
-/src/yarn-error.log*
+.env
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 .env
 package-lock.json
 npm-debug.log*
