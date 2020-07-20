@@ -8,7 +8,8 @@ class postDatabase {
             try {
                 PostSchema.find({}, (error, data) => {
                     if (error) {
-                        reject(errors["002"], error);
+                        errors["002"].reason = error.message || "";
+                        reject(errors["002"]);
                     } else {
                         resolve(data);
                     }
@@ -41,6 +42,7 @@ class postDatabase {
     update(_id, obj) {
         return new Promise((resolve, reject) => {
             try {
+                // _id = {_id : 5f11c07def842a36cc12a31e}
                 // set  new: true it will be return updated document
                 PostSchema.findOneAndUpdate(_id, obj, { new: true }, (error, resposne) => {
                     if (error) {
