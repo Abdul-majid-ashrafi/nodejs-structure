@@ -2,10 +2,13 @@ import router from "../src/routes";
 import config from './config';
 import mongoose from 'mongoose';
 import express from "express";
+import cors from "cors";
+
 const app = express();
 // we imported config
 // we imported router
 // we imported mongoose
+// we imported cors
 // we imported express and set up a new express 
 // instance const app = express().
 
@@ -18,6 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // set route in middleware
 app.use(router);
+// allow cors
+app.use(cors());
 
 // mongoose connection
 mongoose.connect(config.mongodbUrl(), { useNewUrlParser: true, useUnifiedTopology: true })
