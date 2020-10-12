@@ -1,1 +1,3 @@
-export { default as postService } from './post';
+module.exports = {
+    postService: require('./post')
+}

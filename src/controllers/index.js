@@ -1,1 +1,3 @@
-export { default as postsController } from './post';
+module.exports = {
+    postController: require('./post')
+}

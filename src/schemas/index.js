@@ -1,1 +1,3 @@
-export { default as PostSchema } from './post';
+module.exports = {
+    postSchema: require('./post')
+}

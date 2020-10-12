@@ -1,8 +1,7 @@
-export { default as errors } from './errors';
+module.exports = {
+    errors: require('./errors'),
 
-export class Helper {
-
-    static responseJsonHandler(error, data, expressResponse) {
+    responseJsonHandler: (error, data, expressResponse) => {
         let obj = { error: error, data: data };
         if (obj.error) {
             expressResponse.json(obj.error);

@@ -1,1 +1,3 @@
-export { default as postDatabase } from './post';
+module.exports = {
+    postDatabase: require('./post')
+}

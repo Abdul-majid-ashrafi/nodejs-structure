@@ -1,31 +1,33 @@
-import router from "../src/routes";
-import config from './config';
-import mongoose from 'mongoose';
-import express from "express";
-import cors from "cors";
+const router = require("../src/routes");
+const config = require("./config/dev");
+// import config and router files
+const mongoose = require("mongoose");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-const app = express();
-// we imported config
-// we imported router
-// we imported mongoose
-// we imported cors
 // we imported express and set up a new express 
 // instance const app = express().
+const app = express();
+// allow cors
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-const port = process.env.PORT || 5000;
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-// We set up a new express.json() middleware - this
-// is needed to get access to request body.
-// Note: express.json() is only available in express version 4.16.0 and above
+const port = config.port;
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// // We set up a new express.json() middleware - this
+// // is needed to get access to request body.
+// // Note: express.json() is only available in express version 4.16.0 and above
 
 // set route in middleware
 app.use(router);
-// allow cors
-app.use(cors());
 
 // mongoose connection
-mongoose.connect(config.mongodbUrl(), { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(config.databaseURL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 // Error handlers
@@ -62,4 +64,4 @@ app.use(function (error, req, res, next) {
 
 app.listen(port, () => console.log(`Server is running on  http://localhost:${port}`));
 
-export default app;
+module.exports = app;

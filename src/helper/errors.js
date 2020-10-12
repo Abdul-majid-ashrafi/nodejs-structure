@@ -1,4 +1,4 @@
-export default {
+module.exports = {
 
     "001": {
         message: "Unknown error, during create document in db",
@@ -23,5 +23,9 @@ export default {
     "006": {
         message: "Unknown error, during delete document from db",
         code: "006"
+    },
+    "007": {
+        message: "No record found",
+        code: "007"
     },
 }
